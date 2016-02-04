@@ -13,6 +13,8 @@ var ignoreFiles = [
   "search-results"
 ];
 
+var textToBeAdded = "\r\r-----------------------------------------------------\rThis is a line that I have added using fs.appendFile()";
+
 // Using the File System Module to read in the contents of the
 // current directory
 fs.readdir("./", function(err, fileDir){
@@ -24,8 +26,14 @@ fs.readdir("./", function(err, fileDir){
     // extenstions which I am choosing to ignore i.e. js files
     if(checkIgnoreFiles(fileDir[f]))
     {
-      // Logging out the filename of the current file
-      console.log(fileDir[f]);
+      // Calling the appendFile method of the File System, and passing in
+      // the current file, a variable containing the text I want to add, and
+      // a callback function, which I am just using to log errors
+      fs.appendFile(fileDir[f], textToBeAdded, function(err){
+        if(err){
+          console.log(err);
+        }
+      });
     }
   }
 });
