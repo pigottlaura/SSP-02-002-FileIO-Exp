@@ -10,7 +10,8 @@ var ignoreFiles = [
   ".js",
   ".md",
   ".git",
-  "search-results"
+  "search-results",
+  "BACKUP"
 ];
 
 // Using the File System Module to read in the contents of the

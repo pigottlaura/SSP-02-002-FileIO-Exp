@@ -10,7 +10,8 @@ var ignoreFiles = [
   ".js",
   ".md",
   ".git",
-  "search-results"
+  "search-results",
+  "BACKUP"
 ];
 
 var startLine = "--------------------THIS IS A COPY--------------------\r\n\r\n";

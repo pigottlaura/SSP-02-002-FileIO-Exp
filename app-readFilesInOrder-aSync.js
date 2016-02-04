@@ -25,7 +25,8 @@ var ignoreFiles = [
   ".js",
   ".md",
   ".git",
-  "search-results"
+  "search-results",
+  "BACKUP"
 ];
 
 var filesRead = 0;

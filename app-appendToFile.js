@@ -10,7 +10,8 @@ var ignoreFiles = [
   ".js",
   ".md",
   ".git",
-  "search-results"
+  "search-results",
+  "BACKUP"
 ];
 
 var textToBeAdded = "\r\n\r\n-----------------------------------------------------\r\nThis is a line that I have added using fs.appendFile()";
