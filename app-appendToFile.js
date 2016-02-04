@@ -13,7 +13,7 @@ var ignoreFiles = [
   "search-results"
 ];
 
-var textToBeAdded = "\r\r-----------------------------------------------------\rThis is a line that I have added using fs.appendFile()";
+var textToBeAdded = "\r\n\r\n-----------------------------------------------------\r\nThis is a line that I have added using fs.appendFile()";
 
 // Using the File System Module to read in the contents of the
 // current directory

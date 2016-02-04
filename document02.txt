@@ -1,2 +1,5 @@
 This is my second document
------------------------------------------------------This is a line that I have added using fs.appendFile()
+
+
+-----------------------------------------------------
+This is a line that I have added using fs.appendFile()

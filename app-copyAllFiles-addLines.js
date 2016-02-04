@@ -13,8 +13,7 @@ var ignoreFiles = [
   "search-results"
 ];
 
-var startLine = "--------------------THIS IS A COPY--------------------\r\r";
-var endLine = "\r\rCopied on the ";
+var startLine = "--------------------THIS IS A COPY--------------------\r\n\r\n";
 
 // Using the File System Module to read in the contents of the
 // current directory
@@ -34,7 +33,7 @@ fs.readdir("./", function(err, fileDir){
       // the console
       fs.readFile(file, "utf8", function(err, data){
         // Adding the current date and time into the last line of the file
-        endLine +=  Date();
+        var endLine = "\r\n\r\nCopied on the " + Date();
 
         fs.writeFile("COPY-" + file, startLine + data + endLine, function(err) {
           if(err)

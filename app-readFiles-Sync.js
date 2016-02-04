@@ -24,8 +24,8 @@ fs.readdir("./", function(err, fileDir){
     // extenstions which I am choosing to ignore i.e. js files
     if(checkIgnoreFiles(fileDir[f]))
     {
-      // Logging out the filename of the current file
-      console.log(fileDir[f]);
+      console.log("\n\n##############################################");
+      console.log("The contents of " + fileDir[f] + " were: \n" + fs.readFileSync(fileDir[f], "utf8"));
     }
   }
 });
