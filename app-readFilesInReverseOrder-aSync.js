@@ -131,8 +131,8 @@ function sortFiles(){
     // statement is false, no effect will occur on the array
     var ans = 0;
 
-    if(a.orderNum > b.orderNum){
-      // If the orderNumber of a is greater than the orderNumber of b, then return the value
+    if(a.orderNum < b.orderNum){
+      // If the orderNumber of a is less than the orderNumber of b, then return the value
       // of 1, which will move a 1 place forward in the array, past b
       ans = 1;
     }
@@ -156,7 +156,7 @@ function showContentsOfFiles(){
 function saveToTxtFile(){
   // Creating a searchResults variable to store the string that I want
   // to write to the search-results.txt file
-  var searchResults = "Asynchronous SEARCH RESULTS (in order)- " + Date() + "\n\r";
+  var searchResults = "Asynchronous SEARCH RESULTS (in reverse order)- " + Date() + "\n\r";
 
   for(al in allFiles)
   {
@@ -165,7 +165,7 @@ function saveToTxtFile(){
     searchResults += allFiles[al].name + "\r" + "\t" + allFiles[al].contents + "\r\r";
   }
 
-  fs.writeFile("search-results-app-readFilesInOrder-aSync.txt", searchResults, function(err) {
+  fs.writeFile("search-results-app-readFilesInReverseOrder-aSync.txt", searchResults, function(err) {
     if(err)
     {
         console.log('\nERROR - file not saved: ' + err);
