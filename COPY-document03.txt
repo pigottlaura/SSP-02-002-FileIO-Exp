@@ -1,9 +1,0 @@
---------------------THIS IS A COPY--------------------
-
-This is my third document
-
-
-Copied on the Thu Feb 04 2016 18:39:14 GMT+0000 (GMT Standard Time)
-
------------------------------------------------------
-This is a line that I have added using fs.appendFile()

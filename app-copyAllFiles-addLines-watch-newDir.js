@@ -10,43 +10,46 @@ var ignoreFiles = [
   ".js",
   ".md",
   ".git",
-  "search-results"
+  "search-results",
+  "BACKUP"
 ];
 
-var startLine = "--------------------THIS IS A COPY--------------------\r\n\r\n";
+var startLine = "--------------------THIS IS A BACKUP--------------------\r\n\r\n";
 
 // Using the File System Module to read in the contents of the
 // current directory
-fs.readdir("./", function(err, fileDir){
-  // Looping through each of the files returned from the directory. As then
-  // reference to the file itself will be passed into this callback function,
-  // I am including a name for it (file) so that I can reference it
-  // when logging out the details of the file
-  fileDir.forEach(function(file, index){
-    // Before I do anything with the file, I first want to call
-    // the checkIgnoreFiles function (passing in the name of the current
-    // file) to see whether this file contains any of the filenames or
-    // extenstions which I am choosing to ignore i.e. js files
-    if(checkIgnoreFiles(file))
-    {
+fs.watch("./", function(event, filename){
+  console.log("The " + filename + " was " + event + "\n");
+  // Checking if the name of the file that triggered the event is one of the files we are
+  // choosing to ignore. If it is not, then the file will be copied into a new directory
+  if(checkIgnoreFiles(filename))
+  {
+    var now = new Date();
+    var epochTime = now.getTime();
+    var newFolderName = "BACKUP-" + epochTime;
+
+    fs.mkdir(newFolderName, function(err){
       // Reading in the contents of the current file, and logging then out to
       // the console
-      fs.readFile(file, "utf8", function(err, data){
-        // Adding the current date and time into the last line of the file
-        var endLine = "\r\n\r\nCopied on the " + Date();
+      fs.readFile(filename, "utf8", function(err, data){
+        var now = new Date();
+        var epochTime = now.getTime();
 
-        fs.writeFile("COPY-" + file, startLine + data + endLine, function(err) {
+        // Adding the current date and time into the last line of the file
+        var endLine = "\r\nThis file was backed up on the " + now;
+
+        fs.writeFile(newFolderName + "/BACKUP-" + filename, startLine + data + endLine, function(err) {
           if(err)
           {
-              console.log("\nERROR - file not copied: " + err);
+              console.log("\nERROR - file not backed up: " + err);
           } else {
-            console.log("\n" + file + " has been successfully copied");
+            console.log("\n" + filename + " has been successfully backed up");
           }
         });
 
       })
-    }
-  });
+    });
+  }
 });
 
 // Creating the checkIgnoreFiles function (which takes in one parametre)
