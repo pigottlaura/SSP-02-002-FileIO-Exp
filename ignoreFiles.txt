@@ -1,0 +1,7 @@
+ignoreFiles,
+.js,
+.md,
+.git,
+search-results,
+BACKUP,
+SaveToMe

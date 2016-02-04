@@ -21,13 +21,13 @@ var FileTemplate = function(filename, fileContents, fileOrderNumber, fileReturne
 // ignore i.e. I do not want to access the contents of any .js
 // files as it would just result in me logging out the code
 // from this, and potentially other apps.
-var ignoreFiles = [
-  ".js",
-  ".md",
-  ".git",
-  "search-results",
-  "BACKUP"
-];
+// Reading in the "ignoreFiles.txt" file. When the string of data is
+// returned from file, I am utilising JavaScript's chaining abilities
+// to call the string .replace() method, to remove all "new line"
+// breaks from the string. Finally, I am splitting the values
+// it contains based on the , between them, and then storing these
+// in the ignoreFiles array.
+var ignoreFiles = fs.readFileSync("./ignoreFiles.txt", "utf8").replace(/\n/g, "").split(",");
 
 var filesRead = 0;
 var totalIgnoredFiles = 0;
