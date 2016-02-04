@@ -13,6 +13,9 @@ var ignoreFiles = [
   "search-results"
 ];
 
+var startLine = "--------------------THIS IS A COPY--------------------\r\r";
+var endLine = "\r\rCopied on the ";
+
 // Using the File System Module to read in the contents of the
 // current directory
 fs.readdir("./", function(err, fileDir){
@@ -30,8 +33,10 @@ fs.readdir("./", function(err, fileDir){
       // Reading in the contents of the current file, and logging then out to
       // the console
       fs.readFile(file, "utf8", function(err, data){
+        // Adding the current date and time into the last line of the file
+        endLine +=  Date();
 
-        fs.writeFile("COPY-" + file, data, function(err) {
+        fs.writeFile("COPY-" + file, startLine + data + endLine, function(err) {
           if(err)
           {
               console.log("\nERROR - file not copied: " + err);
