@@ -9,7 +9,8 @@ var fs = require("fs");
 var ignoreFiles = [
   ".js",
   ".md",
-  ".git"
+  ".git",
+  "search-results"
 ];
 
 // Using the File System Module to read in the contents of the

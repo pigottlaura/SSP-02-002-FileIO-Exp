@@ -24,7 +24,8 @@ var FileTemplate = function(filename, fileContents, fileOrderNumber, fileReturne
 var ignoreFiles = [
   ".js",
   ".md",
-  ".git"
+  ".git",
+  "search-results"
 ];
 
 var filesRead = 0;
@@ -67,7 +68,7 @@ fs.readdir("./", function(err, fileDir){
         // that were in the directory, minus the ones that we ignored
         if(filesRead == (fileDir.length - totalIgnoredFiles)){
           // Logging out that all files have now been read in
-          console.log("All files have been read in");
+          console.log("All files have been read in \n");
 
           // Calling the sort files function, to rearrange the order in which the files
           // were stored in the array, to reflect the order in which they were requested,
@@ -149,4 +150,27 @@ function showContentsOfFiles(){
     // Logging out their filename, contents and the order in which they returned their results
     console.log(allFiles[f].name + " contained: \n" + allFiles[f].contents + "\n which returned it's data in position " + allFiles[f].returnedNum + "\n");
   }
+  saveToTxtFile();
+}
+
+function saveToTxtFile(){
+  // Creating a searchResults variable to store the string that I want
+  // to write to the search-results.txt file
+  var searchResults = "Asynchronous SEARCH RESULTS (in order)- " + Date() + "\n\r";
+
+  for(al in allFiles)
+  {
+    // Storing the file data into the searchResults string, so it can be saved
+    // in the search-results.txt file
+    searchResults += allFiles[al].name + "\r" + "\t" + allFiles[al].contents + "\r\r";
+  }
+
+  fs.writeFile("search-results-app-readFilesInOrder-aSync.txt", searchResults, function(err) {
+    if(err)
+    {
+        console.log('\nERROR - file not saved: ' + err);
+    } else {
+      console.log('\nYour search results have been saved');
+    }
+  });
 }
